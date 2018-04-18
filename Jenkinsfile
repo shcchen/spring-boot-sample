@@ -12,5 +12,11 @@ pipeline {
         junit(testResults: 'target/surefire-reports/*.xml', healthScaleFactor: 1)
       }
     }
+    stage('package') {
+      steps {
+        sh 'mvn package'
+        archiveArtifacts 'target/spring-boot-sample-data-rest-0.1.0.jar'
+      }
+    }
   }
 }
